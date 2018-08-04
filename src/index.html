@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="text" name="title"/>
+    <button>发送</button>
+    <div id="chatBox">
+
+    </div>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.js"
+        integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"
+        integrity="sha256-pMea2a/7QK1RhYpSh7rIpKSajxu4j61VmpJCJ31KrfA="
+        crossorigin="anonymous"></script>
+<script>
+  $(function(){
+      const socket = io.connect('http://localhost:4000');
+      socket.on('ready', (data) => {
+          console.log('server says:', data);
+          socket.emit('news', {title: '新闻', content: '这是一个新闻'});
+      })
+  })
+</script>
+</body>
+</html>
